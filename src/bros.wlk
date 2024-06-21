@@ -83,8 +83,8 @@ object bros {
 	method brosRebotar() { 
 		if (not(self.hayAlgoAtras())) { position = self.posicionAnterior() }
 	}          
-	method posicionAnterior() = direccionActual.posAnterior(position)
-	method posicionSiguiente() = direccionActual.posSiguiente(position)
+	method posicionAnterior() = direccionActual.posicionAnterior(position)
+	method posicionSiguiente() = direccionActual.posicionSiguiente(position)
 	method empujarCaja() { 
 		game.onCollideDo(self, {el => 
 			if(el.image() == "caja guardada.png" or el.image() == "caja.png"){

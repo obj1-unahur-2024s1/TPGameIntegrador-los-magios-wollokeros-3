@@ -4,14 +4,18 @@ import niveles.*
 
 
 object inicio {
-	method image() = "menuprincipal.jpg"
+	method image() = "portada2.jpg"
 	method position()= game.origin()
 	method configurarTeclaInicio(){keyboard.enter().onPressDo{ if (game.hasVisual(self)) {
 		game.removeVisual(self)
 		nivelUno.iniciar()
 		
+		
+		
 		}
-	}}
+	}
+	}
+
 	method soundtrack(){
 	const rain = game.sound("soundtrackSokobanBros.mp3")
 	rain.shouldLoop(true)
