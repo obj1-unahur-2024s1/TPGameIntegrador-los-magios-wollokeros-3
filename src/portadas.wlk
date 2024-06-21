@@ -1,30 +1,13 @@
 import wollok.game.*
 import niveles.*
-import secuenciaImagen.* // para las imagenes secuenciales
+
 
 
 object inicio {
-	const image = [
-      "menuprincipal.jpg",
-      "menuprincipal1.jpg",
-      "menuprincipal2.jpg",
-      "menuprincipal3.jpg",
-      "menuprincipal4.jpg",
-      "menuprincipal5.jpg",
-      "menuprincipal6.jpg",
-      "menuprincipal7.jpg"
-    ]
-	method quitar() {
-		game.removeVisual(self)
-	
-	}
-	method quitarConTiempo(){
-		game.schedule(8000,{self.quitar()})}
-	method image() = image
+	method image() = "menuprincipal.jpg"
 	method position()= game.origin()
-	method configurarTeclaInicio(){keyboard.enter().onPressDo{ 
-		if (game.hasVisual(self)) {
-		self.quitarConTiempo()
+	method configurarTeclaInicio(){keyboard.enter().onPressDo{ if (game.hasVisual(self)) {
+		game.removeVisual(self)
 		nivelUno.iniciar()
 		
 		}
@@ -46,7 +29,6 @@ object inicio {
 	}
 	
 }
-
 object menuPausa {
 	
 	method image() = "menuPausa.png"
