@@ -72,7 +72,7 @@ class Caja inherits Objeto {
 	}	
 	method estaEnObjetivo() = self.image() == "caja guardada.png"
 	method hayLadrilloHaciaCaja(direccion) = game.getObjectsIn(direccion).any({l => l.image() == "Ladrillo.png"})
-	method noSePuedenMover() { if (self.hayMuchasCajas() or self.hayLadrilloHaciaCaja(self.posicionSiguiente())) { bros.shoveRebotar() } else { self.serEmpujado() }}
+	method noSePuedenMover() { if (self.hayMuchasCajas() or self.hayLadrilloHaciaCaja(self.posicionSiguiente())) { bros.brosRebotar() } else { self.serEmpujado() }}
 	method hayMuchasCajas() = bros.direccionActual().esIgual(direccionActual) and game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == image})
 	method posicionSiguiente() = direccionActual.posSiguiente(position)
 	method posicionAnterior() = direccionActual.posAnterior(position)
