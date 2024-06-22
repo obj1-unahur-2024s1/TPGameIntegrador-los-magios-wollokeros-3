@@ -3,7 +3,7 @@ import niveles.*
 
 
 object inicio {
-	method image() = "portada2.jpg"
+	method image() = "menu8.png"
 	method position()= game.origin()
 	method configurarTeclaInicio(){keyboard.enter().onPressDo{ if (game.hasVisual(self)) {
 		game.removeVisual(self)
@@ -33,7 +33,7 @@ object menuPausa {
 	
 	method image() = "menuPausa.png"
 	
-	method position()= game.at(5,8)
+	method position()= game.at(2,8)
 
 	method configurarTecla(){
 		keyboard.p().onPressDo{
