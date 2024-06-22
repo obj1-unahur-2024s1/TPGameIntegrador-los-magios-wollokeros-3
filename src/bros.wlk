@@ -80,21 +80,21 @@ object bros {
 		keyboard.s().onPressDo{self.arrastrarCaja()}
 	}
 	
-	method brosRebotar() { 
+	method shoveRebotar() { 
 		if (not(self.hayAlgoAtras())) { position = self.posicionAnterior() }
 	}          
-	method posicionAnterior() = direccionActual.posicionAnterior(position)
-	method posicionSiguiente() = direccionActual.posicionSiguiente(position)
+	method posicionAnterior() = direccionActual.posAnterior(position)
+	method posicionSiguiente() = direccionActual.posSiguiente(position)
 	method empujarCaja() { 
 		game.onCollideDo(self, {el => 
-			if(el.image() == "caja guardada.png" or el.image() == "caja.png"){
-			el.direccionActual(direccionActual) el.noSePuedenMover() arrastroCaja = false }}) 
+			if(el.image() == "caja.png" or el.image() == "caja guardada.png"){
+			el.direccionActual(direccionActual)  el.noSePuedenMover() arrastroCaja = false }}) 
     }
     method arrastrarCaja() {
     	if (not arrastroCaja){
     		if (game.getObjectsIn(self.posicionSiguiente()).any({c => c.direccionActual().esIgual(direccionActual)})){
     			cajaAgarrada = game.getObjectsIn(self.posicionSiguiente()).find({c => c.direccionActual().esIgual(direccionActual)})
-    		    self.brosRebotar()
+    		    self.shoveRebotar()
     		    cajaAgarrada.rebotar()
     		    arrastroCaja = true
     		}
