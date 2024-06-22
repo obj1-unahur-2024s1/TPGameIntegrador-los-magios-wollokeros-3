@@ -80,7 +80,7 @@ object bros {
 		keyboard.s().onPressDo{self.arrastrarCaja()}
 	}
 	
-	method brosRebotar() { 
+	method shoveRebotar() { 
 		if (not(self.hayAlgoAtras())) { position = self.posicionAnterior() }
 	}          
 	method posicionAnterior() = direccionActual.posAnterior(position)
@@ -94,7 +94,7 @@ object bros {
     	if (not arrastroCaja){
     		if (game.getObjectsIn(self.posicionSiguiente()).any({c => c.direccionActual().esIgual(direccionActual)})){
     			cajaAgarrada = game.getObjectsIn(self.posicionSiguiente()).find({c => c.direccionActual().esIgual(direccionActual)})
-    		    self.brosRebotar()
+    		    self.shoveRebotar()
     		    cajaAgarrada.rebotar()
     		    arrastroCaja = true
     		}
