@@ -144,7 +144,7 @@ object nivelDos inherits Nivel {
 		self.agregarColumnaDeLadrillos(0, 0,0)
 		self.agregarFilaDeLadrillos(0, 15, 0)
 		self.agregarFilaDeLadrillos(0,14, 14)
-		self.agregarFilaDeLadrillos(13, 9, 7)
+		self.agregarFilaDeLadrillos(12, 9, 7)
 		self.agregarFilaDeLadrillos(1, 14,1)
 		self.agregarFilaDeLadrillos(2,6,10)
 		self.agregarFilaDeLadrillos(1,5,4)
@@ -162,10 +162,10 @@ object nivelDos inherits Nivel {
 		cajas.forEach({x=>x.iniciar()})	
 	}
 	override method agregarObjetivos(){
+		objetivos.add(new Objetivo(position =game.at (2,13)))
 		objetivos.add(new Objetivo(position =game.at (2,2)))
-		objetivos.add(new Objetivo(position =game.at (2,3)))
-		objetivos.add(new Objetivo(position =game.at (3,2)))
-		objetivos.add(new Objetivo(position =game.at (3,3)))
+		objetivos.add(new Objetivo(position =game.at (13,7)))
+		objetivos.add(new Objetivo(position =game.at (6,2)))
 		objetivos.forEach{x=>x.iniciar()}
 	}
 	
