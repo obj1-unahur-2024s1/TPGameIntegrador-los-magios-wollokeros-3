@@ -18,6 +18,7 @@ class Ladrillo inherits Objeto {
 class Objetivo inherits Objeto {
 	const property invisibles = []
 	var property image =  "objetivo (punto).png"
+<<<<<<< HEAD
 	method cambiarColorDeCaja() {self.pintarCajaYPasarALosSiguientesNiveles(nivelUno,nivelDos)
 									if(not nivelUno.existe()){
 										self.pintarCajaYPasarALosSiguientesNiveles(nivelDos,nivelTres)
@@ -33,6 +34,11 @@ class Objetivo inherits Objeto {
 																		 // revisar
 	method finalizar() { self.finalizarNivel(nivelDos,nivelTres,nivelTres)
 	}
+=======
+	method cambiarColorDeCaja() { game.onCollideDo(self, {c => c.pintarCaja() if (nivelUno.completado() and nivelUno.existe()) { nivelUno.pasarANivel2() }}) } // revisar
+	method finalizar() { game.onCollideDo(self, {c => c.pintarCaja() if (nivelDos.completado() and not nivelUno.existe()) { nivelCuatro.finalizarJuego() }}) }
+	
+>>>>>>> branch 'master' of https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3.git
 	method pintarCaja(){}
 	method direccionActual() = bros.direccionActual().contrario()
 	method aniadirInvisibles() { 

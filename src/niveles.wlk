@@ -130,21 +130,21 @@ object nivelDos inherits Nivel {
 
 	
 	
-		
+	
 }
 
-object nivelTres inherits Nivel {
+
+ object nivelTres inherits Nivel {
 	
 	override method agregarLadrillos() {
 		self.agregarColumnaDeLadrillos(0, 15,0)
 		self.agregarColumnaDeLadrillos(0, 14,14)
 		self.agregarColumnaDeLadrillos(2, 14,1)
-		self.agregarColumnaDeLadrillos(1, 4,3)
 		self.agregarColumnaDeLadrillos(0, 0,0)
 		self.agregarColumnaDeLadrillos(0, 0,0)
 		self.agregarFilaDeLadrillos(0, 15, 0)
 		self.agregarFilaDeLadrillos(0,14, 14)
-		self.agregarFilaDeLadrillos(13, 9, 7)
+		self.agregarFilaDeLadrillos(12, 9, 7)
 		self.agregarFilaDeLadrillos(1, 14,1)
 		self.agregarFilaDeLadrillos(2,6,10)
 		self.agregarFilaDeLadrillos(1,5,4)
@@ -162,21 +162,81 @@ object nivelTres inherits Nivel {
 		cajas.forEach({x=>x.iniciar()})	
 	}
 	override method agregarObjetivos(){
+		objetivos.add(new Objetivo(position =game.at (2,13)))
 		objetivos.add(new Objetivo(position =game.at (2,2)))
-		objetivos.add(new Objetivo(position =game.at (2,3)))
-		objetivos.add(new Objetivo(position =game.at (3,2)))
-		objetivos.add(new Objetivo(position =game.at (3,3)))
+		objetivos.add(new Objetivo(position =game.at (13,7)))
+		objetivos.add(new Objetivo(position =game.at (6,2)))
 		objetivos.forEach{x=>x.iniciar()}
 	}
 		
 	
- method finalizarJuego() { 
+	override method iniciar(){ 
+		self.agregarLadrillos()
+		self.agregarObjetivos()
+		game.addVisual(bros)
+		self.agregarCajas()
+		game.addVisual(informacionDeAyuda)
+		
+	}
+	
+	method pasarANivel4() {
+		self.borrar()
+		nivelCuatro.iniciar()
+		imagenNivelCompleto.agregarImagen()
+		imagenNivelCompleto.quitarConTiempo()
+	} 
+}	
+
+object nivelCuatro inherits Nivel {
+	override method agregarLadrillos() {
+		self.agregarFilaDeLadrillos(3, 14, 14)
+		self.agregarFilaDeLadrillos(2, 10, 0)
+		self.agregarFilaDeLadrillos(2, 3, 5)
+		self.agregarFilaDeLadrillos(0, 1, 8)
+		self.agregarFilaDeLadrillos(9, 13, 12)
+		self.agregarFilaDeLadrillos(7, 7, 2)
+		self.agregarFilaDeLadrillos(11, 12, 8)
+		self.agregarColumnaDeLadrillos(12, 14, 2)
+		self.agregarColumnaDeLadrillos(11, 9, 1)
+		self.agregarColumnaDeLadrillos(8, 3, 0)
+		self.agregarColumnaDeLadrillos(0, 2, 1)
+		self.agregarColumnaDeLadrillos(1, 3,11)
+		self.agregarColumnaDeLadrillos(4, 7,12)
+		self.agregarColumnaDeLadrillos(8, 10,13)
+		self.agregarColumnaDeLadrillos(11, 13,14)
+		self.agregarColumnaDeLadrillos(8, 10, 7)
+		self.agregarColumnaDeLadrillos(9, 10, 6)
+		self.agregarColumnaDeLadrillos(8, 9, 3)
+		ladrillos.forEach({l => l.iniciar()})
+	}
+	
+	override method agregarCajas(){
+		cajas.add (new Caja(position= game.at(2,2)))
+		cajas.add (new Caja(position= game.at(5,11)))
+		cajas.add (new Caja(position= game.at(10,11)))
+		cajas.add (new Caja(position= game.at(7,5)))
+		cajas.forEach({x=>x.iniciar()})	
+	}
+	override method agregarObjetivos(){
+		objetivos.add(new Objetivo(position =game.at (12,13)))
+		objetivos.add(new Objetivo(position =game.at (11,7)))
+		objetivos.add(new Objetivo(position =game.at (7,1)))
+		objetivos.add(new Objetivo(position =game.at (6,8)))
+		objetivos.forEach{x=>x.iniciar()}
+	}
+	
+	method finalizarJuego() { 
 		game.addVisual(pantallaFinal)
 	
 	}
 	
 	}
+<<<<<<< HEAD
 	
+=======
+}
+
+>>>>>>> branch 'master' of https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3.git
 
 	
 	
