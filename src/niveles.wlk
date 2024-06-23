@@ -35,12 +35,13 @@ class Nivel {
 
 object nivelUno inherits Nivel{
 	override method agregarLadrillos() {
-		self.agregarColumnaDeLadrillos(1, 14,0)
-		self.agregarColumnaDeLadrillos(3, 10, 13)
+		self.agregarColumnaDeLadrillos(1, 15,0)
+		self.agregarColumnaDeLadrillos(0, 10, 13)
 		self.agregarColumnaDeLadrillos(11, 13,10)
 		self.agregarColumnaDeLadrillos(2, 3,12)
-		self.agregarColumnaDeLadrillos(10, 14,14)
+		self.agregarColumnaDeLadrillos(0, 14,14)
 		self.agregarColumnaDeLadrillos(6, 8,4)
+		self.agregarFilaDeLadrillos(0, 15, 0)
 		self.agregarFilaDeLadrillos(1, 9, 4)
 		self.agregarFilaDeLadrillos(4, 10, 10)
 		self.agregarFilaDeLadrillos(1, 12, 1)
