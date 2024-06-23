@@ -68,7 +68,7 @@ object imagenNivelCompleto{
 
 object informacionDeAyuda{
 	method text() = "Press P to help"
-	method position() = game.at(12,0)
+	method position() = game.at(12,14)
 	method textColor()= paleta.blanco() 
 }
 	

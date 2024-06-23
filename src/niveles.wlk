@@ -10,6 +10,7 @@ class Nivel {
 	var property existe = true
 	method agregarFilaDeLadrillos(desde, hasta , y){ (desde..hasta).forEach({x => ladrillos.add(new Ladrillo(position = game.at(x,y)))}) }
 	method agregarColumnaDeLadrillos(desde, hasta , x) { (desde..hasta).forEach({y => ladrillos.add(new Ladrillo(position = game.at(x,y)))}) }
+	method noHacerNada(){if(objetivos==objetivos)objetivos.forEach{x=>x.noHacerNada()}}
 	method borrar(){
 		ladrillos.forEach({l => game.removeVisual(l)})
 		cajas.forEach({c => game.removeVisual(c)})
@@ -24,13 +25,21 @@ class Nivel {
 	method agregarCajas(){}
 	method agregarObjetivos(){}
 	method iniciar(){
+		self.noHacerNada()
 		self.agregarLadrillos()
 		self.agregarObjetivos()
 		bros.iniciar()
 		self.agregarCajas()
 		game.addVisual(informacionDeAyuda)
+	}
+	method pasarAlNivel(nivel){
+		self.borrar()
+		nivel.iniciar()
+		imagenNivelCompleto.agregarImagen()
+		imagenNivelCompleto.quitarConTiempo()
+	}
 		
-   }
+   
 }
 
 object nivelUno inherits Nivel{
@@ -57,6 +66,7 @@ object nivelUno inherits Nivel{
 		cajas.forEach({x=>x.iniciar()})	
 	}
 	override method agregarObjetivos(){
+		
 		objetivos.add(new Objetivo(position =game.at (12,12)))
 		objetivos.add(new Objetivo(position =game.at (8,12)))
 		objetivos.add(new Objetivo(position =game.at (3,7)))
@@ -64,12 +74,7 @@ object nivelUno inherits Nivel{
 		objetivos.forEach{x=>x.iniciar()}
 	}
 	
-	method pasarANivel2() {
-		self.borrar()
-		nivelDos.iniciar()
-		imagenNivelCompleto.agregarImagen()
-		imagenNivelCompleto.quitarConTiempo()
-	} 	
+
 }
 
 object nivelDos inherits Nivel {
@@ -122,12 +127,7 @@ object nivelDos inherits Nivel {
 		
 	}
 	
-	method pasarANivel3() {
-		self.borrar()
-		nivelTres.iniciar()
-		imagenNivelCompleto.agregarImagen()
-		imagenNivelCompleto.quitarConTiempo()
-	} 	
+
 	
 	
 		
@@ -168,20 +168,15 @@ object nivelTres inherits Nivel {
 		objetivos.add(new Objetivo(position =game.at (3,3)))
 		objetivos.forEach{x=>x.iniciar()}
 	}
+		
 	
  method finalizarJuego() { 
 		game.addVisual(pantallaFinal)
 	
 	}
-	override method iniciar(){ 
-		self.agregarLadrillos()
-		self.agregarObjetivos()
-		game.addVisual(bros)
-		self.agregarCajas()
-		game.addVisual(informacionDeAyuda)
-		
+	
 	}
-}	
+	
 
 	
 	

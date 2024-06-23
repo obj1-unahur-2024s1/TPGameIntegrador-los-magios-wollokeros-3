@@ -18,9 +18,21 @@ class Ladrillo inherits Objeto {
 class Objetivo inherits Objeto {
 	const property invisibles = []
 	var property image =  "objetivo (punto).png"
-	method cambiarColorDeCaja() { game.onCollideDo(self, {c => c.pintarCaja() if (nivelUno.completado() and nivelUno.existe()) { nivelUno.pasarANivel2() }}) } // revisar
-	method finalizar() { game.onCollideDo(self, {c => c.pintarCaja() if (nivelDos.completado() and not nivelUno.existe()) { nivelTres.finalizarJuego() }}) }
-	
+	method cambiarColorDeCaja() {self.pintarCajaYPasarALosSiguientesNiveles(nivelUno,nivelDos)
+									if(not nivelUno.existe()){
+										self.pintarCajaYPasarALosSiguientesNiveles(nivelDos,nivelTres)
+									}
+		
+	}
+							
+	method pintarCajaYPasarALosSiguientesNiveles(nivel1,nivel2){
+		game.onCollideDo(self, {c => c.pintarCaja() if (nivel1.completado() and nivel1.existe()) { nivel1.pasarAlNivel(nivel2) }})} 		
+				
+	method finalizarNivel(nivelAnterior,nivelActual,nivelAFinalizar){
+	game.onCollideDo(self, {c => c.pintarCaja() if (nivelActual.completado() and not nivelAnterior.existe()) { nivelAFinalizar.finalizarJuego() }}) }	
+																		 // revisar
+	method finalizar() { self.finalizarNivel(nivelDos,nivelTres,nivelTres)
+	}
 	method pintarCaja(){}
 	method direccionActual() = bros.direccionActual().contrario()
 	method aniadirInvisibles() { 
@@ -29,11 +41,20 @@ class Objetivo inherits Objeto {
 		if (game.getObjectsIn(position.up(1)).size() == 0) { invisibles.add(new Invisible(position = position.up(1))) }
 		if (game.getObjectsIn(position.down(1)).size() == 0) { invisibles.add(new Invisible(position = position.down(1)))}
 		invisibles.forEach({i => i.iniciar()})
-	} 
+		
+	}
+	method noHacerNada(){
+		
+	}
+	 
+	
+	
+	 
 	      
     override method iniciar() { 
     	super()
 		self.aniadirInvisibles()
+		self.pintarCaja()
 		self.cambiarColorDeCaja()
 		self.finalizar()
 		
