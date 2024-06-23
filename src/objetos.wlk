@@ -18,8 +18,8 @@ class Ladrillo inherits Objeto {
 class Objetivo inherits Objeto {
 	const property invisibles = []
 	var property image =  "objetivo (punto).png"
-	method cambiarColorDeCaja() { game.onCollideDo(self, {c => c.pintarCaja() if (nivelUno.completado() and nivelUno.existe()) { nivelUno.pasarANivel2() }}) }
-	method finalizar() { game.onCollideDo(self, {c => c.pintarCaja() if (nivelDos.completado() and not nivelUno.existe()) { nivelDos.finalizarJuego() }}) }
+	method cambiarColorDeCaja() { game.onCollideDo(self, {c => c.pintarCaja() if (nivelUno.completado() and nivelUno.existe()) { nivelUno.pasarANivel2() }}) } // revisar
+	method finalizar() { game.onCollideDo(self, {c => c.pintarCaja() if (nivelDos.completado() and not nivelUno.existe()) { nivelTres.finalizarJuego() }}) }
 	
 	method pintarCaja(){}
 	method direccionActual() = bros.direccionActual().contrario()

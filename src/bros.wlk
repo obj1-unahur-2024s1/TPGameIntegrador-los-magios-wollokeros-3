@@ -21,11 +21,11 @@ object bros {
 			position = position.right(1)
 		      if (estadoAnimacion == 1) {
                 image = "derecha1.png"
-                estadoAnimacion = 2
+               estadoAnimacion = 2
             } else {
                 image = "derecha2.png"
                 estadoAnimacion = 1
-            }
+           }
 		    direccionActual = derecha
 		}
 	}
@@ -37,7 +37,7 @@ object bros {
                 estadoAnimacion = 2
             } else {
                 image = "izquierda2.png"
-                estadoAnimacion = 1
+               estadoAnimacion = 1
             }
 		    direccionActual = izquierda    
         }
@@ -51,7 +51,7 @@ object bros {
             } else {
                 image = "arriba2.png"
                 estadoAnimacion = 1
-            }
+           }
 		   direccionActual = arriba
 	    }
 	}
@@ -62,7 +62,7 @@ object bros {
                 image = "abajo1.png"
                 estadoAnimacion = 2
             } else {
-                image = "abajo2.png"
+               image = "abajo2.png"
                 estadoAnimacion = 1
             }
 		    direccionActual = abajo
