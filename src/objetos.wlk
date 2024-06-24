@@ -2,6 +2,7 @@ import wollok.game.*
 import bros.*
 import direcciones.*
 import niveles.*
+import portadas.*
 
 class Objeto {
 
@@ -41,19 +42,7 @@ method cambiarColorDeCaja(){
     		self.cambiarColorYPasarDeNivel(nivelActual,nivelSiguiente)}
     		
     		}
-    		
-    
-          /*        self.cambiarColorYPasarDeNivel(nivelUno,nivelDos)
-          if(not nivelUno.existe()){
-
-              self.cambiarColorYPasarDeNivel(nivelDos,nivelTres)
-              if(not nivelDos.existe()){
-                  self.cambiarColorYPasarDeNivel(nivelTres,nivelCuatro)
-              }
-          }
-      }
-
-    */
+    	
 	method finalizarNivel(nivelActual, nivelAFinalizar) {
 		game.onCollideDo(self, { c =>
 			c.pintarCaja()if (nivelAFinalizar.completado() and not nivelActual.existe()) {
@@ -65,6 +54,7 @@ method cambiarColorDeCaja(){
 			c.pintarCaja()
 			if (nivel1.completado() and nivel1.existe()) {
 				nivel1.pasarAlNivel(nivel2)
+				
 			}
 		})
 	}
@@ -140,9 +130,8 @@ class Caja inherits Objeto {
 		} else {
 			bros.rebotar()
 		}
-	}
-
-	method estaEnObjetivo() = self.image() == "caja guardada.png"
+	}															
+	method estaEnObjetivo()= self.image() == "caja guardada.png"
 
 	method hayLadrilloHaciaCaja(direccion) = game.getObjectsIn(direccion).any({ l => l.image() == "Ladrillo.png" })
 

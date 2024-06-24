@@ -77,4 +77,81 @@ object paleta{const property blanco = "#FFFFFF" }
 object pantallaFinal { 
 	method image() = "portada3.jpg"
 	method position() = game.origin()
-}		
+}
+object tiempo{
+    const property position = game.at(7, 0)
+
+    const property rojo = "800000"
+
+    var property tiempo = 0
+
+    var property tiempoSegundos = 40
+    var property tiempoMiliSegundos = 0
+
+    method colision() = true
+
+    method text() = "tiempo = " + tiempoSegundos.toString() +":"+ tiempoMiliSegundos.toString()
+
+    method textColor() = rojo
+    
+    method configurarTecla(){
+		keyboard.enter().onPressDo{
+			if (not game.hasVisual(self)) {
+				game.addVisual(self)
+				self.mostrarTiempo()
+				
+}
+
+}
+
+}
+method iniciar(){
+		self.position()
+		self.configurarTecla()
+	
+		}
+    method restar(){ // restar
+        tiempo -= 1
+        tiempoMiliSegundos += 1
+        if (tiempoMiliSegundos == 10){
+            tiempoMiliSegundos = 0
+            tiempoSegundos -= 1
+        }
+    }
+    
+    method reset(){
+        tiempo = 20
+        tiempoSegundos = 10
+        tiempoMiliSegundos = 0
+    } 
+    
+    method tiempoTermina(){
+    	if(0.max(self.tiempoSegundos())>0){
+    	self.restar()}
+    	else{
+            game.removeTickEvent("tiempo")
+            game.say(self, "se acabo el tiempo!")
+            game.schedule(10, {game.addVisual(gameOver)})
+            
+        }
+    }
+    method sumarTiempo(){ 
+
+        if (nivelUno.hayAlgunaCajaEnObjetivo()){
+            tiempoSegundos =tiempoSegundos + 5}
+            
+            }
+    method mostrarTiempo(){
+		game.onTick(100, "tiempo", {self.tiempoTermina()})
+         
+         }
+         
+         
+         }
+         
+   object gameOver{
+   	method image()= "gameOver.jpg"
+   	method position()= game.origin() 
+   }       
+        
+

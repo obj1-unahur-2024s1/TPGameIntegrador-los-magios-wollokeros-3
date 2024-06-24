@@ -22,10 +22,14 @@ class Nivel {
 	method pasarAlNivel(nivelAPasar){
 		self.borrar()
 		nivelAPasar.iniciar()
+		tiempo.reset()
+		tiempo.mostrarTiempo()
 		imagenNivelCompleto.agregarImagen()
 		imagenNivelCompleto.quitarConTiempo()
 	}
 	method completado() = cajas.all({c => c.estaEnObjetivo()})
+	method hayAlgunaCajaEnObjetivo()= cajas.any({c =>c.estaEnObjetivo()})
+	//method acumulacionDeTiempoPorCaja(){if(self.hayAlgunaCajaEnObjetivo()){tiempo.sumarTiempo()}}
 	method agregarLadrillos(){}
 	method agregarCajas(){}
 	method agregarObjetivos(){}
