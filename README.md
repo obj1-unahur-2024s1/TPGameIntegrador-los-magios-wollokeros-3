@@ -11,13 +11,11 @@ Centurion Gonzalo
 Orellana Magali
 
 ## Capturas
-![3](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/cd0578de-a85e-4d4d-8fc0-d8013e095912)
+![3](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/cd0578de-a85e-4d4d-8fc0-d8013e095912) ![2](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/e4fc9412-44f1-4d67-b086-8f440658aa7e)
 
-![2](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/e4fc9412-44f1-4d67-b086-8f440658aa7e)
+![1](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/28f7de74-0561-4ffa-9c4c-78238cfa0d93) ![4](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/1b24052c-7e06-442c-bd71-58b0da2295c7)
 
-![1](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/28f7de74-0561-4ffa-9c4c-78238cfa0d93)
 
-![4](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/1b24052c-7e06-442c-bd71-58b0da2295c7)
 
 
 
@@ -73,6 +71,6 @@ Si colocas todas las cajas en sus lugares antes de que se acabe el tiempo, ganas
 
 ## Otros
 
-- Curso/Facultad
-- Versión de wollok
+- Comision 1B Objetos 1 Tecnicatura en informatica Unahur
+- Versión de wollok 3.0.0
 - Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
