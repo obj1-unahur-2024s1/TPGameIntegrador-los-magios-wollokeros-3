@@ -36,8 +36,8 @@ class Nivel {
 	method iniciar(){
 		self.agregarLadrillos()
 		self.agregarObjetivos()
-		bros.iniciar()
 		self.agregarCajas()
+		bros.iniciar()
 		game.addVisual(informacionDeAyuda)
 		
    }
@@ -61,17 +61,17 @@ object nivelUno inherits Nivel{
 	}
 	
 	override method agregarCajas(){
-		cajas.add (new Caja(position= game.at(8,7)))
-		cajas.add (new Caja(position= game.at(9,7)))
-		cajas.add (new Caja(position= game.at(10,7)))
-		cajas.add (new Caja(position= game.at(11,7)))
+		cajas.add (new Caja(posX=12, posY=12 ,image="caja marron.png",cajaGuardada = "caja guardada marron.png", position= game.at(8,7)))
+		cajas.add (new Caja(posX=8, posY=12 ,image="caja verde.png",cajaGuardada = "caja guardada verde.png", position= game.at(9,7)))
+		cajas.add (new Caja(posX=3, posY=7 ,image="caja roja.png",cajaGuardada = "caja guardada roja.png", position= game.at(10,7)))
+		cajas.add (new Caja(posX=1, posY=2 ,image="caja azul.png",cajaGuardada = "caja guardada azul.png", position= game.at(11,7)))
 		cajas.forEach({x=>x.iniciar()})	
 	}
 	override method agregarObjetivos(){
-		objetivos.add(new Objetivo(position =game.at (12,12)))
-		objetivos.add(new Objetivo(position =game.at (8,12)))
-		objetivos.add(new Objetivo(position =game.at (3,7)))
-		objetivos.add(new Objetivo(position =game.at (1,2)))
+		objetivos.add(new Objetivo(image="objetivo marron.png",position =game.at (12,12)))
+		objetivos.add(new Objetivo(image="objetivo verde.png",position =game.at (8,12)))
+		objetivos.add(new Objetivo(image="objetivo rojo.png",position =game.at (3,7)))
+		objetivos.add(new Objetivo(image="objetivo azul.png",position =game.at (1,2)))
 		objetivos.forEach{x=>x.iniciar()}
 	}
 	
@@ -105,29 +105,29 @@ object nivelDos inherits Nivel { //cambiar
 	}
 	
 	override method agregarCajas(){
-		cajas.add (new Caja(position= game.at(6,8)))
-		cajas.add (new Caja(position= game.at(9,6)))
-		cajas.add (new Caja(position= game.at(9,8)))
-		cajas.add (new Caja(position= game.at(10,7)))
-		cajas.add (new Caja(position= game.at(4,9)))
-		cajas.add (new Caja(position= game.at(7,10)))
+		cajas.add (new Caja(posX=4, posY=5 ,image="caja marron.png",cajaGuardada = "caja guardada marron.png", position= game.at(6,8)))
+		cajas.add (new Caja(posX=3, posY=3 ,image="caja azul.png",cajaGuardada = "caja guardada azul.png", position= game.at(9,6)))
+		cajas.add (new Caja(posX=10, posY=11 ,image="caja verde.png",cajaGuardada = "caja guardada verde.png", position= game.at(9,8)))
+		cajas.add (new Caja(posX=2, posY=4 ,image="caja marron.png",cajaGuardada = "caja guardada marron.png", position= game.at(10,7)))
+		cajas.add (new Caja(posX=12, posY=5 ,image="caja roja.png",cajaGuardada = "caja guardada roja.png", position= game.at(4,9)))
+		cajas.add (new Caja(posX=9, posY=10 ,image="caja verde.png",cajaGuardada = "caja guardada verde.png", position= game.at(7,10)))
 		cajas.forEach({x=>x.iniciar()})	
 	}
 	override method agregarObjetivos(){
-		objetivos.add(new Objetivo(position =game.at (4,5)))
-		objetivos.add(new Objetivo(position =game.at (3,6)))
-		objetivos.add(new Objetivo(position =game.at (10,11)))
-		objetivos.add(new Objetivo(position =game.at (2,4)))
-		objetivos.add(new Objetivo(position =game.at (12,5)))
-		objetivos.add(new Objetivo(position =game.at (9,10)))
+		objetivos.add(new Objetivo(image="objetivo marron.png",position =game.at (4,5)))
+		objetivos.add(new Objetivo(image="objetivo azul.png",position =game.at (3,6)))
+		objetivos.add(new Objetivo(image="objetivo verde.png",position =game.at (10,11)))
+		objetivos.add(new Objetivo(image="objetivo marron.png",position =game.at (2,4)))
+		objetivos.add(new Objetivo(image="objetivo rojo.png",position =game.at (12,5)))
+		objetivos.add(new Objetivo(image="objetivo verde.png",position =game.at (9,10)))
 		objetivos.forEach{x=>x.iniciar()}
 	}
 	
 	override method iniciar(){ 
 		self.agregarLadrillos()
 		self.agregarObjetivos()
-		game.addVisual(bros)
 		self.agregarCajas()
+		game.addVisual(bros)
 		game.addVisual(informacionDeAyuda)
 		
 	}
@@ -158,25 +158,25 @@ object nivelDos inherits Nivel { //cambiar
 	}
 	
 	override method agregarCajas(){
-		cajas.add (new Caja(position= game.at(4,5)))
-		cajas.add (new Caja(position= game.at(5,6)))
-		cajas.add (new Caja(position= game.at(5,11)))
-		cajas.add (new Caja(position= game.at(3,7)))
+		cajas.add (new Caja(posX=2, posY=13 ,image="caja marron.png",cajaGuardada = "caja guardada marron.png", position= game.at(4,5)))
+		cajas.add (new Caja(posX=2, posY=2 ,image="caja roja.png",cajaGuardada = "caja guardada roja.png", position= game.at(5,6)))
+		cajas.add (new Caja(posX=13, posY=7 ,image="caja verde.png",cajaGuardada = "caja guardada verde.png", position= game.at(5,11)))
+		cajas.add (new Caja(posX=6, posY=2 ,image="caja azul.png",cajaGuardada = "caja guardada azul.png", position= game.at(3,7)))
 		cajas.forEach({x=>x.iniciar()})	
 	}
 	override method agregarObjetivos(){
-		objetivos.add(new Objetivo(position =game.at (2,13)))
-		objetivos.add(new Objetivo(position =game.at (2,2)))
-		objetivos.add(new Objetivo(position =game.at (13,7)))
-		objetivos.add(new Objetivo(position =game.at (6,2)))
+		objetivos.add(new Objetivo(image="objetivo marron.png",position =game.at (2,13)))
+		objetivos.add(new Objetivo(image="objetivo rojo.png",position =game.at (2,2)))
+		objetivos.add(new Objetivo(image="objetivo verde.png",position =game.at (13,7)))
+		objetivos.add(new Objetivo(image="objetivo azul.png",position =game.at (6,2)))
 		objetivos.forEach{x=>x.iniciar()}
 	}
 	
 	override method iniciar(){ 
 		self.agregarLadrillos()
 		self.agregarObjetivos()
-		game.addVisual(bros)
 		self.agregarCajas()
+		game.addVisual(bros)
 		game.addVisual(informacionDeAyuda)
 		
 	}
@@ -208,17 +208,17 @@ object nivelCuatro inherits Nivel {
 	}
 	
 	override method agregarCajas(){
-		cajas.add (new Caja(position= game.at(2,2)))
-		cajas.add (new Caja(position= game.at(5,11)))
-		cajas.add (new Caja(position= game.at(10,11)))
-		cajas.add (new Caja(position= game.at(7,5)))
+		cajas.add (new Caja(posX=12, posY=13 ,image="caja marron.png",cajaGuardada = "caja guardada marron.png", position= game.at(2,2)))
+		cajas.add (new Caja(posX=11, posY=7 ,image="caja roja.png",cajaGuardada = "caja guardada roja.png", position= game.at(5,11)))
+		cajas.add (new Caja(posX=7, posY=1 ,image="caja azul.png",cajaGuardada = "caja guardada azul.png", position= game.at(10,11)))
+		cajas.add (new Caja(posX=6, posY=8 ,image="caja verde.png",cajaGuardada = "caja guardada verde.png", position= game.at(7,5)))
 		cajas.forEach({x=>x.iniciar()})	
 	}
 	override method agregarObjetivos(){
-		objetivos.add(new Objetivo(position =game.at (12,13)))
-		objetivos.add(new Objetivo(position =game.at (11,7)))
-		objetivos.add(new Objetivo(position =game.at (7,1)))
-		objetivos.add(new Objetivo(position =game.at (6,8)))
+		objetivos.add(new Objetivo(image="objetivo marron.png",position =game.at (12,13)))
+		objetivos.add(new Objetivo(image="objetivo rojo.png",position =game.at (11,7)))
+		objetivos.add(new Objetivo(image="objetivo azul.png",position =game.at (7,1)))
+		objetivos.add(new Objetivo(image="objetivo verde.png",position =game.at (6,8)))
 		objetivos.forEach{x=>x.iniciar()}
 	}
 	
@@ -230,10 +230,9 @@ object nivelCuatro inherits Nivel {
 	override method iniciar(){ 
 		self.agregarLadrillos()
 		self.agregarObjetivos()
-		game.addVisual(bros)
 		self.agregarCajas()
+		game.addVisual(bros)
 		game.addVisual(informacionDeAyuda)
 		
 	}
 }
-

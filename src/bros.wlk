@@ -83,23 +83,34 @@ object bros {
 	method brosRebotar() { 
 		if (not(self.hayAlgoAtras())) { position = self.posicionAnterior() }
 	}          
-	method posicionAnterior() = direccionActual.posAnterior(position)
+	method posicionAnterior() {
+    	if (cajaAgarrada != null and cajaAgarrada.estaEnObjetivo()) { 
+        	return position 
+    	} else { 
+        	return direccionActual.posAnterior(position) 
+    	}
+}
 	method posicionSiguiente() = direccionActual.posSiguiente(position)
+	
 	method empujarCaja() { 
 		game.onCollideDo(self, {el => 
-			if(el.image() == "caja.png" or el.image() == "caja guardada.png"){
+			if(el.image() == "caja roja.png" or el.image() == "caja azul.png" or el.image() == "caja verde.png" or el.image() == "caja marron.png"){
 			el.direccionActual(direccionActual)  el.noSePuedenMover() arrastroCaja = false }}) 
-    }
+    }  
     method arrastrarCaja() {
-    	if (not arrastroCaja){
-    		if (game.getObjectsIn(self.posicionSiguiente()).any({c => c.direccionActual().esIgual(direccionActual)})){
-    			cajaAgarrada = game.getObjectsIn(self.posicionSiguiente()).find({c => c.direccionActual().esIgual(direccionActual)})
-    		    self.brosRebotar()
-    		    cajaAgarrada.rebotar()
-    		    arrastroCaja = true
-    		}
-    	}
+    if (not arrastroCaja){
+        if (game.getObjectsIn(self.posicionSiguiente()).any({c => c.direccionActual().esIgual(direccionActual)})){
+            cajaAgarrada = game.getObjectsIn(self.posicionSiguiente()).find({c => c.direccionActual().esIgual(direccionActual)})
+            if (cajaAgarrada.estaEnObjetivo()) {
+                self.rebotar()
+            } else {
+                self.brosRebotar()
+                cajaAgarrada.rebotar()
+                arrastroCaja = true
+            }
+        }
     }
+}
 	method despintarCaja(){}
 	method pintarCaja(){}
 	method rebotar(){}

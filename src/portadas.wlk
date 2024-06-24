@@ -85,7 +85,7 @@ object tiempo{
 
     var property tiempo = 0
 
-    var property tiempoSegundos = 40
+    var property tiempoSegundos = 6000
     var property tiempoMiliSegundos = 0
 
     method colision() = true

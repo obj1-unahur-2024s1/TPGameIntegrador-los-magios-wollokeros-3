@@ -28,7 +28,7 @@ class Ladrillo inherits Objeto {
 class Objetivo inherits Objeto {
 
 	const property invisibles = []
-	var property image = "objetivo (punto).png"
+	var property image
 
 method cambiarColorDeCaja(){
            self.cambiarColorYPasarDeNivel(nivelUno,nivelDos)
@@ -116,7 +116,12 @@ class Invisible inherits Objeto {
 class Caja inherits Objeto {
 
 	var property direccionActual = bros.direccionActual()
-	var property image = "caja.png"
+	var property image
+	var property cajaGuardada
+
+	
+	var property posX
+	var property posY
 
 	override method serEmpujado() {
 		if (bros.direccionActual().esIgual(derecha) and not self.hayLadrilloHaciaCaja(position.right(1))) {
@@ -131,7 +136,9 @@ class Caja inherits Objeto {
 			bros.rebotar()
 		}
 	}															
-	method estaEnObjetivo()= self.image() == "caja guardada.png"
+	method posObjetivo() = game.at(posX,posY)
+	
+	method estaEnObjetivo() = self.position() == self.posObjetivo()
 
 	method hayLadrilloHaciaCaja(direccion) = game.getObjectsIn(direccion).any({ l => l.image() == "Ladrillo.png" })
 
@@ -143,18 +150,24 @@ class Caja inherits Objeto {
 		}
 	}
 
-	method hayMuchasCajas() = bros.direccionActual().esIgual(direccionActual) and game.getObjectsIn(self.posicionSiguiente()).any({ el => el.image() == image })
+	method hayMuchasCajas() = bros.direccionActual().esIgual(direccionActual) and (game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == "caja marron.png"})
+		or game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == "caja verde.png"})
+		or game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == "caja roja.png"})
+		or game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == "caja azul.png"})
+	)
 
 	method posicionSiguiente() = direccionActual.posSiguiente(position)
 
 	method posicionAnterior() = direccionActual.posAnterior(position)
 
-	method pintarCaja() {
-		self.image("caja guardada.png")
-	}
+	method pintarCaja() { 
+        if (self.estaEnObjetivo()) { 
+            self.image(cajaGuardada) 
+        } 
+    }
 
 	method despintarCaja() {
-		self.image("caja.png")
+		self.image(image)
 	}
 
 	method rebotar() {
