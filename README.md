@@ -3,16 +3,21 @@ SokobanBros
 ## Equipo de desarrollo
 
 Arce Emanuel
+
 Carabajal Matias
+
 Centurion Gonzalo
+
 Orellana Magali
 
 ## Capturas
+![3](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/cd0578de-a85e-4d4d-8fc0-d8013e095912)
 
-![3](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/93edb1ef-8662-4615-b73b-750ae1ef7af1)
-![2](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/f4e91757-6a9a-4595-9b7e-a58d35b16d5e)
-![3](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/5c1e346c-c9ce-49fe-beeb-2536433becc2)
-![4](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/c11b0ff3-982b-4e52-9f59-905a736da982)
+![2](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/e4fc9412-44f1-4d67-b086-8f440658aa7e)
+
+![1](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/28f7de74-0561-4ffa-9c4c-78238cfa0d93)
+
+![4](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/1b24052c-7e06-442c-bd71-58b0da2295c7)
 
 
 
