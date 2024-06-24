@@ -24,10 +24,12 @@ Orellana Magali
 
 ## Reglas de Juego / Instrucciones
 
-Objetivo del Juego
+Objetivo del Juego:
+
 El objetivo del juego es colocar todas las cajas en sus respectivos lugares designados antes de que se acabe el tiempo.
 
-Controles
+Controles:
+
 Flecha Arriba (↑): Mueve al personaje hacia arriba.
 
 Flecha Abajo (↓): Mueve al personaje hacia abajo.
@@ -40,7 +42,8 @@ Letra S: El personaje y la caja (si está empujando una) se mueven un espacio ha
 
 Letra P: Muestra la ayuda del juego.
 
-Instrucciones
+Instrucciones :
+
 Inicio del Juego: Al comenzar el juego, el jugador verá un tablero con varias cajas y lugares designados para cada una.
 
 Mover las Cajas: Usa las flechas del teclado para mover al personaje y empujar las cajas hacia sus lugares designados.
@@ -51,7 +54,8 @@ Mostrar Ayuda: Si necesitas ayuda durante el juego, presiona la letra "P" para m
 
 Final del Juego: El juego termina cuando todas las cajas estén en sus lugares designados o se acabe el tiempo.
 
-Reglas adicionales
+Reglas adicionales :
+
 Una vez que la caja este en su respectivo objetivo esta ya no podra moverse.
 
 El personaje solo puede empujar una caja a la vez.
