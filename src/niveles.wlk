@@ -19,6 +19,12 @@ class Nivel {
 	    game.removeVisual(informacionDeAyuda)
 	    existe = false
 	}
+	method pasarAlNivel(nivelAPasar){
+		self.borrar()
+		nivelAPasar.iniciar()
+		imagenNivelCompleto.agregarImagen()
+		imagenNivelCompleto.quitarConTiempo()
+	}
 	method completado() = cajas.all({c => c.estaEnObjetivo()})
 	method agregarLadrillos(){}
 	method agregarCajas(){}
@@ -31,6 +37,7 @@ class Nivel {
 		game.addVisual(informacionDeAyuda)
 		
    }
+   
 }
  
 object nivelUno inherits Nivel{
@@ -64,12 +71,7 @@ object nivelUno inherits Nivel{
 		objetivos.forEach{x=>x.iniciar()}
 	}
 	
-	method pasarANivel2() {
-		self.borrar()
-		nivelDos.iniciar()
-		imagenNivelCompleto.agregarImagen()
-		imagenNivelCompleto.quitarConTiempo()
-	} 	
+	
 }
 
 object nivelDos inherits Nivel { //cambiar
@@ -126,13 +128,6 @@ object nivelDos inherits Nivel { //cambiar
 		
 	}
 	
-	method pasarANivel3() {
-		self.borrar()
-		nivelTres.iniciar()
-		imagenNivelCompleto.agregarImagen()
-		imagenNivelCompleto.quitarConTiempo()
-	} 	
-	
 	
 	
 }
@@ -182,12 +177,7 @@ object nivelDos inherits Nivel { //cambiar
 		
 	}
 	
-	method pasarANivel4() {
-		self.borrar()
-		nivelCuatro.iniciar()
-		imagenNivelCompleto.agregarImagen()
-		imagenNivelCompleto.quitarConTiempo()
-	} 
+
 }	
 
 object nivelCuatro inherits Nivel {
@@ -232,6 +222,7 @@ object nivelCuatro inherits Nivel {
 		game.addVisual(pantallaFinal)
 	
 	}
+	override method pasarAlNivel(nivel){}
 	override method iniciar(){ 
 		self.agregarLadrillos()
 		self.agregarObjetivos()
@@ -241,53 +232,4 @@ object nivelCuatro inherits Nivel {
 		
 	}
 }
-/*
-object nivelCuatro inherits Nivel{
-	override method agregarLadrillos() {
-		self.agregarFilaDeLadrillos(0, 14, 0)
-		self.agregarFilaDeLadrillos(0, 14, 14)
-		self.agregarFilaDeLadrillos(2, 3, 5)
-		self.agregarFilaDeLadrillos(0, 1, 8)
-		self.agregarFilaDeLadrillos(9, 13, 12)
-		self.agregarFilaDeLadrillos(7, 7, 2)
-		self.agregarFilaDeLadrillos(11, 12, 8)
-		self.agregarColumnaDeLadrillos(12, 14, 2)
-		self.agregarColumnaDeLadrillos(13, 9, 1)
-		self.agregarColumnaDeLadrillos(0, 14, 0)
-		self.agregarColumnaDeLadrillos(0, 2, 1)
-		self.agregarColumnaDeLadrillos(1, 3,11)
-		self.agregarColumnaDeLadrillos(0, 7,12)
-		self.agregarColumnaDeLadrillos(0, 10,13)
-		self.agregarColumnaDeLadrillos(0, 14,14)
-		self.agregarColumnaDeLadrillos(8, 10, 7)
-		self.agregarColumnaDeLadrillos(9, 10, 6)
-		self.agregarColumnaDeLadrillos(8, 9, 3)
-		ladrillos.forEach({l => l.iniciar()})
-	}
-	
-	override method agregarCajas(){
-		cajas.add (new Caja(position= game.at(2,2)))
-		cajas.add (new Caja(position= game.at(5,11)))
-		cajas.add (new Caja(position= game.at(10,11)))
-		cajas.add (new Caja(position= game.at(7,5)))
-		cajas.forEach({x=>x.iniciar()})	
-	}
-	override method agregarObjetivos(){
-		objetivos.add(new Objetivo(position =game.at (12,13)))
-		objetivos.add(new Objetivo(position =game.at (11,7)))
-		objetivos.add(new Objetivo(position =game.at (7,1)))
-		objetivos.add(new Objetivo(position =game.at (6,8)))
-		objetivos.forEach{x=>x.iniciar()}
-	}
-	
-	method pasarANivel2() {
-		self.borrar()
-		nivelDos.iniciar()
-		imagenNivelCompleto.agregarImagen()
-		imagenNivelCompleto.quitarConTiempo()
-	} 	
-}
-*/
 
-	
-	
