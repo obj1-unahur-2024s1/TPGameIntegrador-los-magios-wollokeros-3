@@ -168,7 +168,7 @@ class Caja inherits Objeto {
         if (self.estaEnObjetivo()) { 
             self.image(cajaGuardada) 
         } 
-        else (game.schedule(3000, {self.error("La caja no corresponde al objetivo")}))
+        else (game.schedule(100, {self.error("La caja no corresponde al objetivo")}))
     }
 
 	method despintarCaja() {

@@ -84,7 +84,7 @@ object tiempo {
     const property position = game.at(1,0)
     const property rojo = "800000"
     var property tiempo = 0
-    var property tiempoSegundos = 60
+    var property tiempoSegundos = 5000
     var property tiempoMiliSegundos = 0
     const direccionActual = bros.position()
 
@@ -118,7 +118,7 @@ object tiempo {
 
     method reset() {
         tiempo = 0
-        tiempoSegundos = 60
+        tiempoSegundos = 5000
         tiempoMiliSegundos = 0
         game.removeVisual(self)
        
