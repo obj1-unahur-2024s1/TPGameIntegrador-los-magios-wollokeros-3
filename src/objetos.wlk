@@ -52,6 +52,7 @@ method cambiarColorDeCaja(){
 	method cambiarColorYPasarDeNivel(nivel1, nivel2) {
 		game.onCollideDo(self, { c =>
 			c.pintarCaja()
+			tiempo.sumarTiempoAlNivel(nivel1)
 			if (nivel1.completado() and nivel1.existe()) {
 				nivel1.pasarAlNivel(nivel2)
 				
@@ -139,6 +140,9 @@ class Caja inherits Objeto {
 	method posObjetivo() = game.at(posX,posY)
 	
 	method estaEnObjetivo() = self.position() == self.posObjetivo()
+	
+	method hayObjetivo() = self.image() =="caja guardada marron.png" or self.image() == "caja guardada verde.png" 
+    or self.image() == "caja guardada rojo.png"    or self.image() == "caja guardada azul.png"
 
 	method hayLadrilloHaciaCaja(direccion) = game.getObjectsIn(direccion).any({ l => l.image() == "Ladrillo.png" })
 
@@ -164,6 +168,7 @@ class Caja inherits Objeto {
         if (self.estaEnObjetivo()) { 
             self.image(cajaGuardada) 
         } 
+        else (game.schedule(3000, {self.error("La caja no corresponde al objetivo")}))
     }
 
 	method despintarCaja() {

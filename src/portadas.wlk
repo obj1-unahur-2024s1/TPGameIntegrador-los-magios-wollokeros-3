@@ -1,5 +1,6 @@
 import wollok.game.*
 import niveles.*
+import bros.*
 
 
 object inicio {
@@ -78,80 +79,81 @@ object pantallaFinal {
 	method image() = "portada3.jpg"
 	method position() = game.origin()
 }
-object tiempo{
-    const property position = game.at(7, 0)
+object tiempo {
 
+    const property position = game.at(1,0)
     const property rojo = "800000"
-
     var property tiempo = 0
-
-    var property tiempoSegundos = 6000
+    var property tiempoSegundos = 60
     var property tiempoMiliSegundos = 0
+    const direccionActual = bros.position()
 
     method colision() = true
 
-    method text() = "tiempo = " + tiempoSegundos.toString() +":"+ tiempoMiliSegundos.toString()
+    method text() = "tiempo = " + tiempoSegundos.toString() + ":" + tiempoMiliSegundos.toString()
 
     method textColor() = rojo
-    
-    method configurarTecla(){
-		keyboard.enter().onPressDo{
-			if (not game.hasVisual(self)) {
-				game.addVisual(self)
-				self.mostrarTiempo()
-				
-}
 
-}
+    method configurarTecla() {
+        keyboard.enter().onPressDo{ if (not game.hasVisual(self)) {
+                game.addVisual(self)
+                self.mostrarTiempo()
+            }
+        }
+    }
 
-}
-method iniciar(){
-		self.position()
-		self.configurarTecla()
-	
-		}
-    method restar(){ // restar
+    method iniciar() {
+        self.position()
+        self.configurarTecla()
+    }
+
+    method restar() { // restar
         tiempo -= 1
         tiempoMiliSegundos += 1
-        if (tiempoMiliSegundos == 10){
+        if (tiempoMiliSegundos == 10) {
             tiempoMiliSegundos = 0
             tiempoSegundos -= 1
         }
     }
-    
-    method reset(){
-        tiempo = 20
-        tiempoSegundos = 10
+
+    method reset() {
+        tiempo = 0
+        tiempoSegundos = 60
         tiempoMiliSegundos = 0
-    } 
-    
-    method tiempoTermina(){
-    	if(0.max(self.tiempoSegundos())>0){
-    	self.restar()}
-    	else{
+        game.removeVisual(self)
+       
+    }
+
+    method tiempoTermina() {
+        if (0.max(self.tiempoSegundos()) > 0 or bros.position() != direccionActual) {
+            self.restar()
+        } else {
             game.removeTickEvent("tiempo")
             game.say(self, "se acabo el tiempo!")
-            game.schedule(10, {game.addVisual(gameOver)})
-            
+            game.schedule(10, { game.addVisual(gameOver)})
         }
     }
-    method sumarTiempo(){ 
 
-        if (nivelUno.hayAlgunaCajaEnObjetivo()){
-            tiempoSegundos =tiempoSegundos + 5}
-            
-            }
-    method mostrarTiempo(){
-		game.onTick(100, "tiempo", {self.tiempoTermina()})
-         
-         }
-         
-         
-         }
-         
-   object gameOver{
-   	method image()= "gameOver.jpg"
-   	method position()= game.origin() 
-   }       
+    method borrar() = game.removeTickEvent("tiempo")
+
+    method sumarTiempoAlNivel(nivel) {
+        if (nivel.hayCajaEnAlgunObjetivo()) {
+            tiempoSegundos += 5
+        }
+    }
+
+    method mostrarTiempo() {
+        game.onTick(100, "tiempo", { self.tiempoTermina()})
+    }
+
+}
+
+object gameOver {
+
+    method image() = "gameOver.jpg"
+
+    method position() = game.origin()
+
+}    
         
 

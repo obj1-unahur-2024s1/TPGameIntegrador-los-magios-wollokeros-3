@@ -22,13 +22,16 @@ class Nivel {
 	method pasarAlNivel(nivelAPasar){
 		self.borrar()
 		nivelAPasar.iniciar()
+		tiempo.borrar()
 		tiempo.reset()
+		game.addVisual(tiempo)
+		game.schedule(6000, { tiempo.mostrarTiempo()})
 		tiempo.mostrarTiempo()
 		imagenNivelCompleto.agregarImagen()
 		imagenNivelCompleto.quitarConTiempo()
 	}
 	method completado() = cajas.all({c => c.estaEnObjetivo()})
-	method hayAlgunaCajaEnObjetivo()= cajas.any({c =>c.estaEnObjetivo()})
+	method hayCajaEnAlgunObjetivo()= cajas.any({c =>c.hayObjetivo()})
 	//method acumulacionDeTiempoPorCaja(){if(self.hayAlgunaCajaEnObjetivo()){tiempo.sumarTiempo()}}
 	method agregarLadrillos(){}
 	method agregarCajas(){}
@@ -105,21 +108,21 @@ object nivelDos inherits Nivel { //cambiar
 	}
 	
 	override method agregarCajas(){
-		cajas.add (new Caja(posX=4, posY=5 ,image="caja marron.png",cajaGuardada = "caja guardada marron.png", position= game.at(6,8)))
-		cajas.add (new Caja(posX=3, posY=3 ,image="caja azul.png",cajaGuardada = "caja guardada azul.png", position= game.at(9,6)))
+		cajas.add (new Caja(posX=4, posY=5 ,image="caja gris.png",cajaGuardada = "caja guardada gris.png", position= game.at(6,8)))
+		cajas.add (new Caja(posX=3, posY=6 ,image="caja azul.png",cajaGuardada = "caja guardada azul.png", position= game.at(9,6)))
 		cajas.add (new Caja(posX=10, posY=11 ,image="caja verde.png",cajaGuardada = "caja guardada verde.png", position= game.at(9,8)))
 		cajas.add (new Caja(posX=2, posY=4 ,image="caja marron.png",cajaGuardada = "caja guardada marron.png", position= game.at(10,7)))
 		cajas.add (new Caja(posX=12, posY=5 ,image="caja roja.png",cajaGuardada = "caja guardada roja.png", position= game.at(4,9)))
-		cajas.add (new Caja(posX=9, posY=10 ,image="caja verde.png",cajaGuardada = "caja guardada verde.png", position= game.at(7,10)))
+		cajas.add (new Caja(posX=9, posY=10 ,image="caja verde apagado.png",cajaGuardada = "caja guardada verde apagado.png", position= game.at(7,10)))
 		cajas.forEach({x=>x.iniciar()})	
 	}
 	override method agregarObjetivos(){
-		objetivos.add(new Objetivo(image="objetivo marron.png",position =game.at (4,5)))
+		objetivos.add(new Objetivo(image="objetivo gris.png",position =game.at (4,5)))
 		objetivos.add(new Objetivo(image="objetivo azul.png",position =game.at (3,6)))
 		objetivos.add(new Objetivo(image="objetivo verde.png",position =game.at (10,11)))
 		objetivos.add(new Objetivo(image="objetivo marron.png",position =game.at (2,4)))
 		objetivos.add(new Objetivo(image="objetivo rojo.png",position =game.at (12,5)))
-		objetivos.add(new Objetivo(image="objetivo verde.png",position =game.at (9,10)))
+		objetivos.add(new Objetivo(image="objetivo verde apagado.png",position =game.at (9,10)))
 		objetivos.forEach{x=>x.iniciar()}
 	}
 	
@@ -185,27 +188,28 @@ object nivelDos inherits Nivel { //cambiar
 }	
 
 object nivelCuatro inherits Nivel {
-	override method agregarLadrillos() {
-		self.agregarFilaDeLadrillos(3, 14, 14)
-		self.agregarFilaDeLadrillos(2, 10, 0)
-		self.agregarFilaDeLadrillos(2, 3, 5)
-		self.agregarFilaDeLadrillos(0, 1, 8)
-		self.agregarFilaDeLadrillos(9, 13, 12)
-		self.agregarFilaDeLadrillos(7, 7, 2)
-		self.agregarFilaDeLadrillos(11, 12, 8)
-		self.agregarColumnaDeLadrillos(12, 14, 2)
-		self.agregarColumnaDeLadrillos(11, 9, 1)
-		self.agregarColumnaDeLadrillos(8, 3, 0)
-		self.agregarColumnaDeLadrillos(0, 2, 1)
-		self.agregarColumnaDeLadrillos(1, 3,11)
-		self.agregarColumnaDeLadrillos(4, 7,12)
-		self.agregarColumnaDeLadrillos(8, 10,13)
-		self.agregarColumnaDeLadrillos(11, 13,14)
-		self.agregarColumnaDeLadrillos(8, 10, 7)
-		self.agregarColumnaDeLadrillos(9, 10, 6)
-		self.agregarColumnaDeLadrillos(8, 9, 3)
-		ladrillos.forEach({l => l.iniciar()})
-	}
+
+    override method agregarLadrillos() {
+        self.agregarFilaDeLadrillos(3, 14, 14)
+        self.agregarFilaDeLadrillos(2, 10, 0)
+        self.agregarFilaDeLadrillos(2, 3, 5)
+        self.agregarFilaDeLadrillos(0, 1, 8)
+        self.agregarFilaDeLadrillos(9, 13, 12)
+        self.agregarFilaDeLadrillos(7, 7, 2)
+        self.agregarFilaDeLadrillos(11, 12, 8)
+        self.agregarColumnaDeLadrillos(12, 14, 2)
+        self.agregarColumnaDeLadrillos(11, 9, 1)
+        self.agregarColumnaDeLadrillos(8, 3, 0)
+        self.agregarColumnaDeLadrillos(0, 2, 1)
+        self.agregarColumnaDeLadrillos(1, 3, 11)
+        self.agregarColumnaDeLadrillos(4, 7, 12)
+        self.agregarColumnaDeLadrillos(8, 10, 13)
+        self.agregarColumnaDeLadrillos(11, 13, 14)
+        self.agregarColumnaDeLadrillos(8, 10, 7)
+        self.agregarColumnaDeLadrillos(9, 10, 6)
+        self.agregarColumnaDeLadrillos(8, 9, 3)
+        ladrillos.forEach({ l => l.iniciar()})
+    }
 	
 	override method agregarCajas(){
 		cajas.add (new Caja(posX=12, posY=13 ,image="caja marron.png",cajaGuardada = "caja guardada marron.png", position= game.at(2,2)))

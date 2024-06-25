@@ -83,18 +83,14 @@ object bros {
 	method brosRebotar() { 
 		if (not(self.hayAlgoAtras())) { position = self.posicionAnterior() }
 	}          
-	method posicionAnterior() {
-    	if (cajaAgarrada != null and cajaAgarrada.estaEnObjetivo()) { 
-        	return position 
-    	} else { 
-        	return direccionActual.posAnterior(position) 
-    	}
-}
+	
+	method posicionAnterior() = direccionActual.posAnterior(position) 
+    	
 	method posicionSiguiente() = direccionActual.posSiguiente(position)
 	
 	method empujarCaja() { 
 		game.onCollideDo(self, {el => 
-			if(el.image() == "caja roja.png" or el.image() == "caja azul.png" or el.image() == "caja verde.png" or el.image() == "caja marron.png"){
+			if(el.image() == "caja roja.png" or el.image() == "caja azul.png" or el.image() == "caja verde.png" or el.image() == "caja marron.png" or el.image() == "caja gris.png" or el.image() == "caja verde apagado.png"){
 			el.direccionActual(direccionActual)  el.noSePuedenMover() arrastroCaja = false }}) 
     }  
     method arrastrarCaja() {
