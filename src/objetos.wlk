@@ -11,6 +11,9 @@ class Objeto {
 	method serEmpujado() {
 	}
 
+	method pintarLaCaja() {
+	}
+
 	method iniciar() {
 		game.addVisual(self)
 	}
@@ -30,32 +33,32 @@ class Objetivo inherits Objeto {
 	const property invisibles = []
 	var property image
 
-method cambiarColorDeCaja(){
-           self.cambiarColorYPasarDeNivel(nivelUno,nivelDos)
-           self.pasarACadenaDeNiveles(nivelUno,nivelDos,nivelTres)
-    	   self.pasarACadenaDeNiveles(nivelDos,nivelTres,nivelCuatro)
-              }
-          
-      
-    method pasarACadenaDeNiveles(nivelAEvaluar,nivelActual,nivelSiguiente){
-    	if(not nivelAEvaluar.existe()){
-    		self.cambiarColorYPasarDeNivel(nivelActual,nivelSiguiente)}
-    		
-    		}
-    	
+	method configurarNivelConCajas() {
+		self.cambiarColorYPasarDeNivel(nivelUno, nivelDos)
+		self.pasarACadenaDeNiveles(nivelUno, nivelDos, nivelTres)
+		self.pasarACadenaDeNiveles(nivelDos, nivelTres, nivelCuatro)
+	}
+
+	method pasarACadenaDeNiveles(nivelAEvaluar, nivelActual, nivelSiguiente) {
+		if (not nivelAEvaluar.existe()) {
+			self.cambiarColorYPasarDeNivel(nivelActual, nivelSiguiente)
+		}
+	}
+
 	method finalizarNivel(nivelActual, nivelAFinalizar) {
 		game.onCollideDo(self, { c =>
-			c.pintarCaja()if (nivelAFinalizar.completado() and not nivelActual.existe()) {
+			c.pintarCaja()
+			if (nivelAFinalizar.completado() and not nivelActual.existe()) {
 				nivelAFinalizar.finalizarJuego()
-			}})}
+			}
+		})
+	}
 
 	method cambiarColorYPasarDeNivel(nivel1, nivel2) {
 		game.onCollideDo(self, { c =>
 			c.pintarCaja()
-			tiempo.sumarTiempoAlNivel(nivel1)
 			if (nivel1.completado() and nivel1.existe()) {
 				nivel1.pasarAlNivel(nivel2)
-				
 			}
 		})
 	}
@@ -88,7 +91,7 @@ method cambiarColorDeCaja(){
 	override method iniciar() {
 		super()
 		self.aniadirInvisibles()
-		self.cambiarColorDeCaja()
+		self.configurarNivelConCajas()
 		self.finalizar()
 	}
 
@@ -118,9 +121,7 @@ class Caja inherits Objeto {
 
 	var property direccionActual = bros.direccionActual()
 	var property image
-	var property cajaGuardada
-
-	
+	const property cajaGuardada
 	var property posX
 	var property posY
 
@@ -134,15 +135,15 @@ class Caja inherits Objeto {
 		} else if (bros.direccionActual().esIgual(arriba) and not self.hayLadrilloHaciaCaja(position.up(1))) {
 			position = position.up(1)
 		} else {
-			bros.rebotar()
+			bros.brosRebotar()
 		}
-	}															
-	method posObjetivo() = game.at(posX,posY)
-	
+	}
+
+	method posObjetivo() = game.at(posX, posY)
+
 	method estaEnObjetivo() = self.position() == self.posObjetivo()
-	
-	method hayObjetivo() = self.image() =="caja guardada marron.png" or self.image() == "caja guardada verde.png" 
-    or self.image() == "caja guardada rojo.png"    or self.image() == "caja guardada azul.png"
+
+	method hayObjetivo() = self.image() == "caja guardada marron.png" or self.image() == "caja guardada verde.png" or self.image() == "caja guardada rojo.png" or self.image() == "caja guardada azul.png"
 
 	method hayLadrilloHaciaCaja(direccion) = game.getObjectsIn(direccion).any({ l => l.image() == "Ladrillo.png" })
 
@@ -154,22 +155,19 @@ class Caja inherits Objeto {
 		}
 	}
 
-	method hayMuchasCajas() = bros.direccionActual().esIgual(direccionActual) and (game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == "caja marron.png"})
-		or game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == "caja verde.png"})
-		or game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == "caja roja.png"})
-		or game.getObjectsIn(self.posicionSiguiente()).any({el => el.image() == "caja azul.png"})
+	method hayMuchasCajas() = bros.direccionActual().esIgual(direccionActual) and (game.getObjectsIn(self.posicionSiguiente()).any({ el => el.image() == "caja marron.png" }) or game.getObjectsIn(self.posicionSiguiente()).any({ el => el.image() == "caja verde.png" }) or game.getObjectsIn(self.posicionSiguiente()).any({ el => el.image() == "caja roja.png" }) or game.getObjectsIn(self.posicionSiguiente()).any({ el => el.image() == "caja azul.png" })
 	)
 
 	method posicionSiguiente() = direccionActual.posSiguiente(position)
 
 	method posicionAnterior() = direccionActual.posAnterior(position)
 
-	method pintarCaja() { 
-        if (self.estaEnObjetivo()) { 
-            self.image(cajaGuardada) 
-        } 
-        else (game.schedule(100, {self.error("La caja no corresponde al objetivo")}))
-    }
+	method pintarCaja() {
+		if (self.estaEnObjetivo()) {
+			self.image(cajaGuardada)
+		} else (game.schedule(100, { self.error("La caja no corresponde al objetivo") })
+        )
+	}
 
 	method despintarCaja() {
 		self.image(image)

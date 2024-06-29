@@ -10,6 +10,7 @@ object inicio {
 		game.removeVisual(self)
 		nivelUno.iniciar()
 		
+		
 		}
 	}}
 	method soundtrack(){
@@ -51,7 +52,7 @@ object menuPausa {
 	method quitarConTiempo(){
 		game.schedule(5000,{self.quitar()})}
 		
-	method iniciar(){
+	method iniciar() {
 		self.image()
 		self.position()
 		self.configurarTecla()
@@ -69,7 +70,7 @@ object imagenNivelCompleto{
 
 object informacionDeAyuda{
 	method text() = "Press P to help"
-	method position() = game.at(12,0)
+	method position() = game.at(12,14)
 	method textColor()= paleta.blanco() 
 }
 	
@@ -81,19 +82,17 @@ object pantallaFinal {
 }
 object tiempo {
 
-    const property position = game.at(1,0)
-    const property rojo = "800000"
-    var property tiempo = 0
-    var property tiempoSegundos = 5000
+    const property position = game.at(1,14)
+    const property rojo = "#FFFFFF"
+    var property tiempoSegundos = 60
     var property tiempoMiliSegundos = 0
-    const direccionActual = bros.position()
 
-    method colision() = true
 
-    method text() = "tiempo = " + tiempoSegundos.toString() + ":" + tiempoMiliSegundos.toString()
+
+    method text() = "tiempo : " + tiempoSegundos.toString() 
 
     method textColor() = rojo
-
+	
     method configurarTecla() {
         keyboard.enter().onPressDo{ if (not game.hasVisual(self)) {
                 game.addVisual(self)
@@ -108,7 +107,6 @@ object tiempo {
     }
 
     method restar() { // restar
-        tiempo -= 1
         tiempoMiliSegundos += 1
         if (tiempoMiliSegundos == 10) {
             tiempoMiliSegundos = 0
@@ -117,15 +115,13 @@ object tiempo {
     }
 
     method reset() {
-        tiempo = 0
-        tiempoSegundos = 5000
+        tiempoSegundos = 60
         tiempoMiliSegundos = 0
         game.removeVisual(self)
-       
     }
-
+	method sumarMasTiempo(){tiempoSegundos=tiempoSegundos +40}
     method tiempoTermina() {
-        if (0.max(self.tiempoSegundos()) > 0 or bros.position() != direccionActual) {
+        if ((self.tiempoSegundos())>0) {
             self.restar()
         } else {
             game.removeTickEvent("tiempo")
@@ -136,16 +132,15 @@ object tiempo {
 
     method borrar() = game.removeTickEvent("tiempo")
 
-    method sumarTiempoAlNivel(nivel) {
-        if (nivel.hayCajaEnAlgunObjetivo()) {
-            tiempoSegundos += 5
-        }
-    }
+    
+  
+  
 
-    method mostrarTiempo() {
+
+   method mostrarTiempo() {
         game.onTick(100, "tiempo", { self.tiempoTermina()})
     }
-
+	
 }
 
 object gameOver {
@@ -155,5 +150,4 @@ object gameOver {
     method position() = game.origin()
 
 }    
-        
 
