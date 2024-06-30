@@ -5,15 +5,16 @@ import niveles.*
 import portadas.*
 
 object juego {
-	method configurar(){
+
+	method configurar() {
 		game.title("Sokoban Bros!")
 		game.ground("fondo.png")
 		game.width(15)
-	    game.height(15)
-	    inicio.iniciar()
+		game.height(15)
+		inicio.iniciar()
+		tiempo.iniciar()
 		menuPausa.iniciar()
-}
+	}
 
 }
-
 

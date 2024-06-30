@@ -1,13 +1,15 @@
 import wollok.game.*
 import niveles.*
+import bros.*
 
 
 object inicio {
-	method image() = "menu7.png"
+	method image() = "menu8.png"
 	method position()= game.origin()
 	method configurarTeclaInicio(){keyboard.enter().onPressDo{ if (game.hasVisual(self)) {
 		game.removeVisual(self)
 		nivelUno.iniciar()
+		
 		
 		}
 	}}
@@ -50,7 +52,7 @@ object menuPausa {
 	method quitarConTiempo(){
 		game.schedule(5000,{self.quitar()})}
 		
-	method iniciar(){
+	method iniciar() {
 		self.image()
 		self.position()
 		self.configurarTecla()
@@ -68,7 +70,7 @@ object imagenNivelCompleto{
 
 object informacionDeAyuda{
 	method text() = "Press P to help"
-	method position() = game.at(13,13)
+	method position() = game.at(12,14)
 	method textColor()= paleta.blanco() 
 }
 	
@@ -77,4 +79,75 @@ object paleta{const property blanco = "#FFFFFF" }
 object pantallaFinal { 
 	method image() = "portada3.jpg"
 	method position() = game.origin()
-}		
+}
+object tiempo {
+
+    const property position = game.at(1,14)
+    const property rojo = "#FFFFFF"
+    var property tiempoSegundos = 60
+    var property tiempoMiliSegundos = 0
+
+
+
+    method text() = "tiempo : " + tiempoSegundos.toString() 
+
+    method textColor() = rojo
+	
+    method configurarTecla() {
+        keyboard.enter().onPressDo{ if (not game.hasVisual(self)) {
+                game.addVisual(self)
+                self.mostrarTiempo()
+            }
+        }
+    }
+
+    method iniciar() {
+        self.position()
+        self.configurarTecla()
+    }
+
+    method restar() { // restar
+        tiempoMiliSegundos += 1
+        if (tiempoMiliSegundos == 10) {
+            tiempoMiliSegundos = 0
+            tiempoSegundos -= 1
+        }
+    }
+
+    method reset() {
+        tiempoSegundos = 60
+        tiempoMiliSegundos = 0
+        game.removeVisual(self)
+    }
+	method sumarMasTiempo(){tiempoSegundos=tiempoSegundos +40}
+    method tiempoTermina() {
+        if ((self.tiempoSegundos())>0) {
+            self.restar()
+        } else {
+            game.removeTickEvent("tiempo")
+            game.say(self, "se acabo el tiempo!")
+            game.schedule(10, { game.addVisual(gameOver)})
+        }
+    }
+
+    method borrar() = game.removeTickEvent("tiempo")
+
+    
+  
+  
+
+
+   method mostrarTiempo() {
+        game.onTick(100, "tiempo", { self.tiempoTermina()})
+    }
+	
+}
+
+object gameOver {
+
+    method image() = "gameOver.jpg"
+
+    method position() = game.origin()
+
+}    
+
