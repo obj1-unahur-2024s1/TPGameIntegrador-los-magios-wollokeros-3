@@ -35,6 +35,8 @@ class Nivel {
 		tiempo.borrar()
 		game.addVisual(tiempo)
 		game.schedule(4000, { tiempo.mostrarTiempo()})
+		moneda.resetRepeticion()
+		moneda.iniciar()
 		imagenNivelCompleto.agregarImagen()
 		imagenNivelCompleto.quitarConTiempo()
 	}

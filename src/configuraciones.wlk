@@ -13,6 +13,8 @@ object juego {
 		game.height(15)
 		inicio.iniciar()
 		tiempo.iniciar()
+		moneda.iniciar()
+		
 		menuPausa.iniciar()
 	}
 

@@ -13,6 +13,7 @@ class Objeto {
 
 	method pintarLaCaja() {
 	}
+	method quitarYSumarTiempo(){}
 
 	method iniciar() {
 		game.addVisual(self)
@@ -48,6 +49,7 @@ class Objetivo inherits Objeto {
 	method finalizarNivel(nivelActual, nivelAFinalizar) {
 		game.onCollideDo(self, { c =>
 			c.pintarCaja()
+			
 			if (nivelAFinalizar.completado() and not nivelActual.existe()) {
 				nivelAFinalizar.finalizarJuego()
 			}
@@ -178,4 +180,6 @@ class Caja inherits Objeto {
 	}
 
 }
+
+
 
