@@ -129,7 +129,7 @@ object tiempo {
 		self.configurarTecla()
 	}
 
-	method restar() { 
+	method restar() {
 		tiempoMiliSegundos += 1
 		if (tiempoMiliSegundos == 10) {
 			tiempoMiliSegundos = 0
@@ -174,11 +174,12 @@ object gameOver {
 }
 
 object moneda {
-	var repeticion = 1
-	
-	method image() = "moneda.png"
-	method position() = game.at(2,10)
 
+	var repeticion = 1
+
+	method image() = "moneda.png"
+
+	method position() = game.at(2, 10)
 
 	method configurarTecla() {
 		keyboard.num1().onPressDo{ if (not game.hasVisual(self) and repeticion == 1) {
@@ -214,7 +215,6 @@ object moneda {
 	}
 
 	method colisionar() {
-		
 		game.onCollideDo(bros, { e => e.quitarYSumarTiempo()})
 	}
 
