@@ -189,12 +189,15 @@ object moneda {
 	
 	var repeticion = 1
 	var property  noExisto = 0
+	const posMoneda = [game.at(6,12), game.at(5, 3), game.at(10, 9)]
+	var posicionActual = posMoneda.anyOne()
 	method image() = "moneda.png"
 
-	method position() = game.at(3,10)
+	method position() = posicionActual
 
 	method configurarTecla() {
 		keyboard.num1().onPressDo{ if (not game.hasVisual(self) and repeticion == 1 and noExisto != 1) {
+				posicionActual = posMoneda.anyOne()
 				game.addVisual(self)
 				self.colisionar()
 				ladrilloDigito.valor(0)
