@@ -43,6 +43,7 @@ class Objetivo inherits Objeto {
 	method pasarACadenaDeNiveles(nivelAEvaluar, nivelActual, nivelSiguiente) {
 		if (not nivelAEvaluar.existe()) {
 			self.cambiarColorYPasarDeNivel(nivelActual, nivelSiguiente)
+			
 		}
 	}
 

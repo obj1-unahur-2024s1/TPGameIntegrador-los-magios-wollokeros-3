@@ -13,6 +13,8 @@ object inicio {
 		game.removeVisual(self)
 		
 		nivelUno.iniciar()
+		ladrilloDigito.iniciar()
+		monedaAUtilizar.iniciar()
 		
 		}
 		}
@@ -129,6 +131,7 @@ object tiempo {
 	method iniciar() {
 		self.position()
 		self.configurarTecla()
+		
 	}
 
 	method restar() {
@@ -138,7 +141,12 @@ object tiempo {
 			tiempoSegundos -= 1
 		}
 	}
-
+	method mensajeEnTiempo20(){
+		if(self.tiempoSegundos() == 20 and moneda.noExisto() == 1){
+		game.schedule(5000,{game.say(bros,"Oh no! presiona 1 para que me ayude a subir el tiempo")})
+			
+		}
+	}
 	method reset() {
 		tiempoSegundos = 60
 		tiempoMiliSegundos = 0
@@ -162,7 +170,9 @@ object tiempo {
 	method borrar() = game.removeTickEvent("tiempo")
 
 	method mostrarTiempo() {
-		game.onTick(100, "tiempo", { self.tiempoTermina()})
+		game.onTick(100, "tiempo", { self.tiempoTermina()
+									self.mensajeEnTiempo20()
+		})
 	}
 
 }
@@ -175,19 +185,20 @@ object gameOver {
 
 }
 
-class Moneda {
-	var property position
+object moneda {
+	
 	var repeticion = 1
-
+	var property  noExisto = 0
 	method image() = "moneda.png"
 
-	method position() = position
+	method position() = game.at(3,10)
 
 	method configurarTecla() {
-		keyboard.num1().onPressDo{ if (not game.hasVisual(self) and repeticion == 1) {
+		keyboard.num1().onPressDo{ if (not game.hasVisual(self) and repeticion == 1 and noExisto != 1) {
 				game.addVisual(self)
 				self.colisionar()
 				ladrilloDigito.valor(0)
+				self.noAparezco()
 				repeticion = 0
 				game.schedule(15000, { if (game.hasVisual(self)) {
 						self.quitar()
@@ -196,7 +207,6 @@ class Moneda {
 			}
 		}
 	}
-
 	
 
 	method repeticion() = repeticion
@@ -216,7 +226,9 @@ class Moneda {
 	method colisionar() {
 		game.onCollideDo(bros, { e => e.quitarYSumarTiempo()})
 	}
-
+	method noAparezco(){
+		noExisto= 1
+	}
 }
 
 
@@ -229,7 +241,19 @@ object monedaAUtilizar{
 	
 	method image() = "ladrillo con moneda.png"
 	method position() = game.at(6,14)  
+	method configurarTeclaInicio() {
+	 if (not game.hasVisual(self)) {
+			game.addVisual(self)}
+			
+			}
+			
+			
 	
+	method iniciar() {
+		self.image()
+		self.position()
+		self.configurarTeclaInicio()
+	}
 
 	
 	
@@ -240,8 +264,20 @@ object ladrilloDigito {
 	
 	
 	method position() =game.at(7,14)
-	 method image() = "x" +" "+ valor + ".png" 
-	 
+	 method image() = "x" + " " + valor + ".png" 
+	 method configurarTeclaInicio() {
+		if (not game.hasVisual(self)) {
+			game.addVisual(self)}
+			
+			
+			}
 	
-}
+	method iniciar() {
+		self.image()
+		self.position()
+		self.configurarTeclaInicio()
+	}
+	
+	}
+
 
