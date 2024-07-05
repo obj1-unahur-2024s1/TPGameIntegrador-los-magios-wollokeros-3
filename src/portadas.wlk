@@ -10,9 +10,11 @@ object inicio {
 
 	method configurarTeclaInicio() {
 		keyboard.enter().onPressDo{ if (game.hasVisual(self)) {
-				game.removeVisual(self)
-				nivelUno.iniciar()
-			}
+		game.removeVisual(self)
+		
+		nivelUno.iniciar()
+		
+		}
 		}
 	}
 
@@ -173,18 +175,19 @@ object gameOver {
 
 }
 
-object moneda {
-
+class Moneda {
+	var property position
 	var repeticion = 1
 
 	method image() = "moneda.png"
 
-	method position() = game.at(2, 10)
+	method position() = position
 
 	method configurarTecla() {
 		keyboard.num1().onPressDo{ if (not game.hasVisual(self) and repeticion == 1) {
 				game.addVisual(self)
 				self.colisionar()
+				ladrilloDigito.valor(0)
 				repeticion = 0
 				game.schedule(15000, { if (game.hasVisual(self)) {
 						self.quitar()
@@ -194,13 +197,9 @@ object moneda {
 		}
 	}
 
-	method noHacerNada() {
-	}
+	
 
-	method resetRepeticion() {
-		repeticion = 1
-	}
-
+	method repeticion() = repeticion
 	method quitar() = game.removeVisual(self)
 
 	method quitarYSumarTiempo() {
@@ -218,5 +217,31 @@ object moneda {
 		game.onCollideDo(bros, { e => e.quitarYSumarTiempo()})
 	}
 
+}
+
+
+
+
+
+object monedaAUtilizar{
+	
+	
+	
+	method image() = "ladrillo con moneda.png"
+	method position() = game.at(6,14)  
+	
+
+	
+	
+}
+
+object ladrilloDigito {
+	var property valor = 1
+	
+	
+	method position() =game.at(7,14)
+	 method image() = "x" +" "+ valor + ".png" 
+	 
+	
 }
 

@@ -4,7 +4,7 @@ import objetos.*
 import portadas.*
 
 class Nivel {
-
+	const monedas= []
 	const ladrillos = []
 	const cajas = []
 	const objetivos = []
@@ -17,7 +17,7 @@ class Nivel {
 	method agregarColumnaDeLadrillos(desde, hasta, x) {
 		(desde .. hasta).forEach({ y => ladrillos.add(new Ladrillo(position = game.at(x, y)))})
 	}
-
+	
 	method borrar() {
 		ladrillos.forEach({ l => game.removeVisual(l)})
 		cajas.forEach({ c => game.removeVisual(c)})
@@ -28,6 +28,8 @@ class Nivel {
 		existe = false
 		tiempo.reset()
 	}
+	
+	
 
 	method pasarAlNivel(nivelAPasar) {
 		self.borrar()
@@ -35,10 +37,10 @@ class Nivel {
 		tiempo.borrar()
 		game.addVisual(tiempo)
 		game.schedule(4000, { tiempo.mostrarTiempo()})
-		moneda.resetRepeticion()
-		moneda.iniciar()
 		imagenNivelCompleto.agregarImagen()
 		imagenNivelCompleto.quitarConTiempo()
+		monedas.forEach{x=>x.repeticion()}
+		
 	}
 
 	method completado() = cajas.all({ c => c.estaEnObjetivo() })
@@ -53,13 +55,23 @@ class Nivel {
 
 	method agregarObjetivos() {
 	}
+	method agregarMonedas(){
+		monedas.add(new Moneda( position = game.at(6, 7)))
+			monedas.forEach{ x => x.iniciar()}
+	}
 
 	method iniciar() {
 		self.agregarLadrillos()
 		self.agregarObjetivos()
 		self.agregarCajas()
+		self.agregarMonedas()
+		
+		
 		bros.iniciar()
 		game.addVisual(informacionDeAyuda)
+		game.addVisual(ladrilloDigito)
+		game.addVisual(monedaAUtilizar)
+		
 	}
 
 }
@@ -96,6 +108,8 @@ object nivelUno inherits Nivel {
 		objetivos.add(new Objetivo(image = "objetivo azul.png", position = game.at(1, 2)))
 		objetivos.forEach{ x => x.iniciar()}
 	}
+	
+	
 
 }
 
@@ -144,13 +158,22 @@ object nivelDos inherits Nivel {
 		objetivos.add(new Objetivo(image = "objetivo verde apagado.png", position = game.at(9, 10)))
 		objetivos.forEach{ x => x.iniciar()}
 	}
+	
+		
+			
+		
+	
+
 
 	override method iniciar() {
 		self.agregarLadrillos()
 		self.agregarObjetivos()
+		self.agregarMonedas()
 		self.agregarCajas()
+		
 		game.addVisual(bros)
 		game.addVisual(informacionDeAyuda)
+		
 	}
 
 }
@@ -190,13 +213,25 @@ object nivelTres inherits Nivel {
 		objetivos.add(new Objetivo(image = "objetivo azul.png", position = game.at(6, 2)))
 		objetivos.forEach{ x => x.iniciar()}
 	}
+	
+	override method agregarMonedas(){
+		
+			monedas.add(new Moneda( position = game.at(11, 6)))
+			monedas.forEach{ x => x.iniciar()}
+
+		
+	}
+
+
 
 	override method iniciar() {
 		self.agregarLadrillos()
 		self.agregarObjetivos()
+		self.agregarMonedas()
 		self.agregarCajas()
 		game.addVisual(bros)
 		game.addVisual(informacionDeAyuda)
+	
 	}
 
 }
@@ -240,6 +275,8 @@ object nivelCuatro inherits Nivel {
 		objetivos.forEach{ x => x.iniciar()}
 	}
 
+
+
 	method finalizarJuego() {
 		game.addVisual(pantallaFinal)
 	}
@@ -251,9 +288,14 @@ object nivelCuatro inherits Nivel {
 		self.agregarLadrillos()
 		self.agregarObjetivos()
 		self.agregarCajas()
+		self.agregarMonedas()
+		monedas.forEach({x=>x.repeticion()})
+		
 		game.addVisual(bros)
 		game.addVisual(informacionDeAyuda)
-	}
+	
+		
+		}
 
 }
 

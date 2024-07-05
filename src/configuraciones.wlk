@@ -7,13 +7,14 @@ import portadas.*
 object juego {
 
 	method configurar() {
+	
 		game.title("Sokoban Bros!")
 		game.ground("fondo.png")
 		game.width(15)
 		game.height(15)
 		inicio.iniciar()
+
 		tiempo.iniciar()
-		moneda.iniciar()
 		
 		menuPausa.iniciar()
 	}
