@@ -13,7 +13,8 @@ Orellana Magali
 Objetivo del Juego
 El objetivo del juego es colocar todas las cajas en sus respectivos lugares designados antes de que se acabe el tiempo.
 
-Controles
+Controles:
+
 
 Flecha Arriba (↑): Mueve al personaje hacia arriba.
 
@@ -29,7 +30,8 @@ Letra P: Muestra la ayuda del juego.
 Número 1: Llama a una moneda que agrega 40 segundos extras al tiempo, pero solo se puede usar una vez.
 
 
-Instrucciones
+Instrucciones:
+
 
 Inicio del Juego: Al comenzar el juego, el jugador verá un tablero con varias cajas y lugares designados para cada una.
 
@@ -44,7 +46,8 @@ Final del Juego: El juego termina cuando todas las cajas estén en sus lugares d
 Moneda Extra: Presiona el número 1 para llamar a una moneda que agrega 40 segundos extras al tiempo. Solo se puede llamar a la moneda una vez por juego.
 
 
-Reglas adicionales
+Reglas adicionales:
+
 
 Una vez que la caja esté en su respectivo objetivo, esta ya no podrá moverse.
 
