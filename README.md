@@ -1,6 +1,4 @@
-# Nombre del juego (<- borrar y completar)
-
-## Equipo de desarrollo
+SokobanBros
 
 Arce Emanuel
 Carabajal Matias
@@ -9,11 +7,8 @@ Orellana Magali
 
 
 
-![3](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/205c7a61-b707-42e3-89ed-f8c38b7d8714)
-
-![2](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/73f11296-d506-444b-a7ab-2a1a865c3cea)
-
-![1](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/6ec25bda-0d20-417c-b1d1-c80809a02e05)
+![3](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/cd0578de-a85e-4d4d-8fc0-d8013e095912) ![2](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/e4fc9412-44f1-4d67-b086-8f440658aa7e)
+![1](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/28f7de74-0561-4ffa-9c4c-78238cfa0d93) ![4](https://github.com/obj1-unahur-2024s1/TPGameIntegrador-los-magios-wollokeros-3/assets/165811875/1b24052c-7e06-442c-bd71-58b0da2295c7)
 
 Objetivo del Juego
 El objetivo del juego es colocar todas las cajas en sus respectivos lugares designados antes de que se acabe el tiempo.
